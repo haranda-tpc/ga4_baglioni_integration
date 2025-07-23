@@ -6,7 +6,7 @@ constant: GA4_CONNECTION {
 }
 
 constant: GA4_SCHEMA {
-  value: "pr-mktg-analyt-prod.analytics_268229233"
+  value: "pr-mktg-analyt-prod.analytics_355572593"
   export: override_required
 }
 
