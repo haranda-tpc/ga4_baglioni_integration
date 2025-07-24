@@ -248,14 +248,14 @@ view: sessions {
   measure: sesiones_contenido {
     type: count_distinct
     sql: ${TABLE}.sl_key ;;
-    filters: [events.tipo_de_sitio: "Contenido", full_landing: "palaceresorts.com%, www.palaceresorts.com%, beach.palaceresorts.com%, cozumel.palaceresorts.com%, playacar.palaceresorts.com%, sun.palaceresorts.com%, leblancsparesorts.com%, www.leblancsparesorts.com%, cancun.leblancsparesorts.com%, los-cabos.leblancsparesorts.com%, moonpalace.com%, www.moonpalace.com%, moonpalacecancun.com%, www.moonpalacecancun.com%, thegrand.moonpalace.com%, jamaica.moonpalace.com%"]
+    filters: [events.tipo_de_sitio: "Contenido", full_landing: "baglionihotels.com%, www.baglionihotels.com%, sardinia.baglionihotels.com%, puglia.baglionihotels.com%, maldives.baglionihotels.com%, london.baglionihotels.com%, milan.baglionihotels.com%, venice.baglionihotels.com%, rome.baglionihotels.com%, florence.baglionihotels.com%"]
     hidden: yes
   }
 
   measure: sesiones_motor {
     type: count_distinct
     sql: ${TABLE}.sl_key ;;
-    filters: [events.tipo_de_sitio: "CLEVER", full_landing: "palaceresorts.com%, www.palaceresorts.com%, beach.palaceresorts.com%, cozumel.palaceresorts.com%, playacar.palaceresorts.com%, sun.palaceresorts.com%, leblancsparesorts.com%, www.leblancsparesorts.com%, cancun.leblancsparesorts.com%, los-cabos.leblancsparesorts.com%, moonpalace.com%, www.moonpalace.com%, moonpalacecancun.com%, www.moonpalacecancun.com%, thegrand.moonpalace.com%, jamaica.moonpalace.com%"]
+    filters: [events.tipo_de_sitio: "Motor", full_landing: "baglionihotels.com%, www.baglionihotels.com%, sardinia.baglionihotels.com%, puglia.baglionihotels.com%, maldives.baglionihotels.com%, london.baglionihotels.com%, milan.baglionihotels.com%, venice.baglionihotels.com%, rome.baglionihotels.com%, florence.baglionihotels.com%"]
     hidden: yes
   }
 

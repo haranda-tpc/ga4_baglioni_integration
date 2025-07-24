@@ -93,78 +93,57 @@ view: events {
       ;;
   }
 
+  dimension: tipo_de_hotel {
+    type: string
+    sql:
+    CASE
+      WHEN ${propiedad} IN ("Maldives","Sardinia","Puglia")
+        THEN "Resort"
+      WHEN ${propiedad} IN ("London","Venice","Rome","Milan","Puglia","Florence")
+        THEN "City hotel"
+    END
+  ;;
+  }
+
+
   dimension: tipo_de_sitio {
     type: string
     sql:
     CASE
-      WHEN ${device__web_info__hostname} LIKE '%reservhotel.com'
-        OR ${device__web_info__hostname} LIKE 'packages%'
-      THEN 'Reservhotel'
-
-      WHEN ${device__web_info__hostname} LIKE '%booking%' THEN 'CLEVER'
-
-      WHEN (${device__web_info__hostname} LIKE '%palaceresorts.com'
-      OR ${device__web_info__hostname} LIKE '%moonpalace.com'
-      OR ${device__web_info__hostname} LIKE '%moonpalacecancun.com'
-      OR ${device__web_info__hostname} LIKE '%leblancsparesorts.com')
-      AND ${device__web_info__hostname} NOT LIKE '%booking%'
-      THEN 'Contenido'
-      END
-      ;;
+      WHEN ${device__web_info__hostname} IN ("florence.baglionihotels.com","www.baglionihotels.com","baglionihotels.com","maldives.baglionihotels.com","london.baglionihotels.com","venice.baglionihotels.com","rome.baglionihotels.com","milan.baglionihotels.com","sardinia.baglionihotels.com","puglia.baglionihotels.com")
+        THEN "Contenido"
+      WHEN ${device__web_info__hostname} IN ("bookingsflorence.baglionihotels.com","bookings.baglionihotels.com","bookingsmaldives.baglionihotels.com","bookingslondon.baglionihotels.com","bookingsvenice.baglionihotels.com","bookingsrome.baglionihotels.com","bookingsmilan.baglionihotels.com","bookingssardinia.baglionihotels.com","bookingspuglia.baglionihotels.com")
+        THEN "Motor"
+    END
+  ;;
   }
 
-  dimension: propiedad {
-    type: string
-    sql:
-    CASE
-      WHEN ${device__web_info__hostname} IN ("www.palaceresorts.com","palaceresorts.com","onlinebookingspr.palaceresorts.com","onlinebookingspaypr.palaceresorts.com")
-      THEN "Palace Resorts Brand"
-
-      WHEN ${device__web_info__hostname} IN ("beach.palaceresorts.com","bookingsbeachpr.palaceresorts.com","bookingsbeachpaypr.palaceresorts.com")
-      OR ${hotel_name_reservhotel} = "10444"
-      THEN "Beach Palace"
-
-      WHEN ${device__web_info__hostname} IN ("cozumel.palaceresorts.com","bookingscozumelpr.palaceresorts.com","bookingscozumelpaypr.palaceresorts.com")
-      OR ${hotel_name_reservhotel} = "10445"
-      THEN "Cozumel Palace"
-
-      WHEN ${device__web_info__hostname} IN ("playacar.palaceresorts.com","bookingsplayadelcarmenpr.palaceresorts.com","bookingsplayadelcarmenpaypr.palaceresorts.com")
-      OR ${hotel_name_reservhotel} = "10449"
-      THEN "Playacar Palace"
-
-      WHEN ${device__web_info__hostname} IN ("sun.palaceresorts.com","bookingssunpr.palaceresorts.com","bookingssunpaypr.palaceresorts.com")
-      OR ${hotel_name_reservhotel} = "10450"
-      THEN "Sun Palace"
-
-      WHEN ${device__web_info__hostname} IN ("www.moonpalace.com","moonpalace.com","onlinebookingspr.moonpalace.com","onlinebookingspaypr.moonpalace.com")
-      THEN "Moon Palace Brand"
-
-      WHEN ${device__web_info__hostname} IN ("www.moonpalacecancun.com","moonpalacecancun.com","bookingscancunpr.moonpalace.com","bookingsnizucpr.moonpalace.com","bookingsnizucpaypr.moonpalace.com")
-      OR ${hotel_name_reservhotel} IN ("10443","10740")
-      THEN "Moon Palace Cancun"
-
-      WHEN ${device__web_info__hostname} IN ("jamaica.moonpalace.com","bookingsjamaicapr.moonpalace.com","bookingsjamaicapaypr.moonpalace.com")
-      OR ${hotel_name_reservhotel} = "10448"
-      THEN "Moon Palace Jamaica"
-
-      WHEN ${device__web_info__hostname} IN ("thegrand.moonpalace.com","bookingsthegrandpr.moonpalace.com","bookingsthegrandpaypr.moonpalace.com")
-      OR ${hotel_name_reservhotel} = "10451"
-      THEN "Moon Palace The Grand"
-
-      WHEN ${device__web_info__hostname} IN ("www.leblancsparesorts.com","leblancsparesorts.com","onlinebookingspr.leblancsparesorts.com","onlinebookingspaypr.leblancsparesorts.com")
-      THEN "Le Blanc Brand"
-
-      WHEN ${device__web_info__hostname} IN ("cancun.leblancsparesorts.com","bookingscancunpr.leblancsparesorts.com","bookingscancunpaypr.leblancsparesorts.com")
-      OR ${hotel_name_reservhotel} = "10447"
-      THEN "Le Blanc Cancun"
-
-      WHEN ${device__web_info__hostname} IN ("los-cabos.leblancsparesorts.com","bookingscabopr.leblancsparesorts.com","bookingscabopaypr.leblancsparesorts.com")
-      OR ${hotel_name_reservhotel} = "10457"
-      THEN "Le Blanc Los Cabos"
-      END
-      ;;
-  }
-
+    dimension: propiedad {
+      type: string
+      sql:
+          CASE
+            WHEN ${device__web_info__hostname} IN ("www.baglionihotels.com","baglionihotels.com","bookings.baglionihotels.com")
+              THEN "Baglioni Brand"
+            WHEN ${device__web_info__hostname} IN ("maldives.baglionihotels.com","bookingsmaldives.baglionihotels.com")
+              THEN "Maldives"
+            WHEN ${device__web_info__hostname} IN ("london.baglionihotels.com","bookingslondon.baglionihotels.com")
+              THEN "London"
+            WHEN ${device__web_info__hostname} IN ("venice.baglionihotels.com","bookingsvenice.baglionihotels.com")
+              THEN "Venice"
+            WHEN ${device__web_info__hostname} IN ("rome.baglionihotels.com","bookingsrome.baglionihotels.com")
+              THEN "Rome"
+            WHEN ${device__web_info__hostname} IN ("milan.baglionihotels.com","bookingsmilan.baglionihotels.com")
+              THEN "Milan"
+            WHEN ${device__web_info__hostname} IN ("sardinia.baglionihotels.com","bookingssardinia.baglionihotels.com")
+              THEN "Sardinia"
+            WHEN ${device__web_info__hostname} IN ("puglia.baglionihotels.com","bookingspuglia.baglionihotels.com")
+              THEN "Puglia"
+            WHEN ${device__web_info__hostname} IN ("florence.baglionihotels.com","bookingsflorence.baglionihotels.com")
+              THEN "Florence"
+            ELSE "Other"
+          END
+        ;;
+    }
   dimension: propiedad_motor {
     type: string
     sql:
@@ -231,7 +210,7 @@ view: events {
           THEN 'UK'
         -- EU
         WHEN REGEXP_CONTAINS(${geo__continent}, r"Europe") = true
-         AND NOT REGEXP_CONTAINS(${geo__country}, r"United Kingdom|Italy")=true
+         AND NOT REGEXP_CONTAINS(${geo__country}, r"Russia|Ukraine|United Kingdom|Italy")=true
             THEN 'EU'
             ELSE 'ROW'
       END;;
