@@ -1,6 +1,6 @@
 ---
 - dashboard: palace_resorts__reporte_de_sitios_ga4
-  title: Palace Resorts | Reporte de Sitios GA4
+  title: Baglioni Hotels | Reporte de Sitios GA4
   layout: newspaper
   preferred_viewer: dashboards-next
   crossfilter_enabled: true
