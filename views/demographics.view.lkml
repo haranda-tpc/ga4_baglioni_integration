@@ -5,7 +5,7 @@ view: demographics {
   derived_table: {
     sql: SELECT *
       FROM `pr-mktg-analyt-prod.ga4.demograficos`
-      WHERE property_id = "268229233";;
+      WHERE property_id = "355572593";;
   }
 
   dimension: demographics_primary_key {
